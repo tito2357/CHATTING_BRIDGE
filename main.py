@@ -3,11 +3,12 @@ from linebot.v3 import WebhookHandler
 from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.messaging import Configuration, ApiClient, MessagingApi, ReplyMessageRequest, TextMessage
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
+import os
 
 app = Flask(__name__)
 
-configuration = Configuration(access_token='YOUR_CHANNEL_ACCESS_TOKEN')
-handler = WebhookHandler('YOUR_CHANNEL_SECRET')
+configuration = Configuration(access_token=os.getenv('access_token'))
+handler = WebhookHandler(os.getenv('access_secret'))
 
 
 @app.route("/callback", methods=['POST'])
